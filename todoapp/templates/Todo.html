@@ -1,8 +1,8 @@
-<h1>Todo list</h1>
+<h1>今日やることリスト</h1>
 
 
 <!-- todoリストを表示 -->
-<ul>
+<ul style="list-style: none; padding-left: 0;">
     {% for task in todo_items %}
         <li>
             {{task.content}}
@@ -11,10 +11,12 @@
             </form>
         </li>
     {% endfor %}
-</ul>
+    </ul>
 
 <!-- 入力フォーム -->
 <form action="/todo_post/" method="POST">{% csrf_token %} 
     <input type="text" name="content"/>
     <button type="submit" value="add">送信</button>
 </form>
+
+<p><a href="{% url 'logout' %}">ログアウト</a></p>

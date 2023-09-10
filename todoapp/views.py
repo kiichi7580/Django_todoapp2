@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import Todo
+from django.contrib.auth.views import LoginView
 
 # Create your views here.
+
+#ログインビュー
+class CustomLoginView(LoginView):
+    success_url = '/todo/'
 
 # HTMLファイルを表示させる
 def todoapp(request):

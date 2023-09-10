@@ -25,19 +25,19 @@ SECRET_KEY = "django-insecure-@40mi%ebi9@^vj=tazb7dyk@^*botff&n1&hx(di_@@4iv2vry
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "todoapp",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "todoapp",
     ]
 
 MIDDLEWARE = [
@@ -117,6 +117,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/todo/"
+LOGOUT_REDIRECT_URL = "/login/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
