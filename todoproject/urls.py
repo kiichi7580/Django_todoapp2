@@ -22,12 +22,14 @@ from django.contrib.auth.decorators import login_required
 
 from django.views.generic import TemplateView
 
-
+from todoapp import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", CustomLoginView.as_view(), name="index"),
     path('', include("django.contrib.auth.urls")),
+    path("signup/", views.SignUpView.as_view(), name="signup"),
+    path('activate/<uidb64>/<token>/', views.ActivateView.as_view(), name='activate'),
 
     path("todo/", todoapp),
     path("todo_post/", todo_post),

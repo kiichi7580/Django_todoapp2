@@ -1,22 +1,37 @@
-<h1>今日やることリスト</h1>
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/Todo.css' %}">
+    </head>
+    <body>
+    <header>
+        <h1 class="title">To Do List</h1>
+    </header>
 
 
-<!-- todoリストを表示 -->
-<ul style="list-style: none; padding-left: 0;">
-    {% for task in todo_items %}
-        <li>
-            {{task.content}}
-            <form action="/delete/{{task.id}}" method="POST">{% csrf_token %} 
-                <button type="submit" value="delete">削除</button>
-            </form>
-        </li>
-    {% endfor %}
+    <!-- todoリストを表示 -->
+    <ul style="list-style: none;">
+        {% for task in todo_items %}
+            <li>
+                <form action="/delete/{{task.id}}" method="POST">{% csrf_token %}
+                    {{task.content}} <button type="submit" value="delete">削除</button>
+                </form>
+            </li>
+        {% endfor %}
     </ul>
 
-<!-- 入力フォーム -->
-<form action="/todo_post/" method="POST">{% csrf_token %} 
-    <input type="text" name="content"/>
-    <button type="submit" value="add">送信</button>
-</form>
+    <!-- 入力フォーム -->
+    <form action="/todo_post/" method="POST">{% csrf_token %} 
+        <input type="text" name="content" class="textarea"/>
+        <button type="submit" value="add">追加</button>
+    </form>
 
-<p><a href="{% url 'logout' %}">ログアウト</a></p>
+    <p class="logout"><a href="{% url 'logout' %}">ログアウト</a></p>
+    </body>
+</html>
+
+
